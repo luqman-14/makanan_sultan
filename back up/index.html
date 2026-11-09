@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuliner Sultan | Risol Mayo, Tahu Kocek, Es Teler & Dimsum Mentai</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Pro/Free Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#FDFBF7',   // Cream Warm Background
+                            100: '#F5EFE6',
+                            200: '#E8DFD1',
+                            500: '#F59E0B',  // Warm Amber / Gold
+                            600: '#D97706',  // Deep Amber
+                            700: '#B45309',
+                        },
+                        spicy: {
+                            500: '#EF4444',  // Vibrant Red
+                            600: '#DC2626',  // Spicy Red Accent
+                            700: '#B91C1C',
+                        },
+                        charcoal: {
+                            800: '#262322',
+                            900: '#1C1917',  // Dark Charcoal
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        @keyframes pulse-gentle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        .animate-pulse-gentle {
+            animation: pulse-gentle 3s infinite ease-in-out;
+        }
+        .glass-header {
+            background: rgba(253, 251, 247, 0.88);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-brand-50 text-charcoal-900 font-sans antialiased min-h-screen flex flex-col selection:bg-spicy-600 selection:text-white">
+
+    <!-- ================= NAVBAR / HEADER ================= -->
+    <header class="sticky top-0 z-40 glass-header border-b border-amber-200/60 transition-all shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-spicy-600 via-brand-500 to-amber-400 flex items-center justify-center text-white text-xl shadow-md shadow-spicy-600/30 group-hover:rotate-6 transition-transform">
+                    <i class="fa-solid fa-fire-burner"></i>
+                </div>
+                <div>
+                    <span class="font-black text-xl sm:text-2xl tracking-tight block leading-none text-charcoal-900">
+                        Kuliner<span class="text-spicy-600">Sultan</span>
+                    </span>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-brand-700">Premium Street Food</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-7 font-bold text-xs uppercase tracking-wider text-stone-700">
+                <a href="#hero" class="hover:text-spicy-600 transition-colors">Beranda</a>
+                <a href="#katalog" class="hover:text-spicy-600 transition-colors">Menu Sultan</a>
+                <a href="#testimoni" class="hover:text-spicy-600 transition-colors">Ulasan</a>
+                <a href="#faq" class="hover:text-spicy-600 transition-colors">FAQ</a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/6281234567890" target="_blank" class="hidden sm:flex items-center gap-2 text-xs font-extrabold bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200/80 px-3.5 py-2.5 rounded-2xl transition-colors">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                    <span>Tanya Admin</span>
+                </a>
+                
+                <!-- Cart Button Trigger -->
+                <button onclick="toggleCartDrawer(true)" class="relative bg-charcoal-900 hover:bg-black text-white px-4 py-2.5 rounded-2xl shadow-md transition-all active:scale-95 flex items-center gap-2.5">
+                    <i class="fa-solid fa-bag-shopping text-amber-400 text-base"></i>
+                    <span class="hidden sm:inline text-xs font-bold uppercase">Keranjang</span>
+                    <span id="cart-count-badge" class="bg-spicy-600 text-white font-black text-xs w-5 h-5 rounded-full flex items-center justify-center border border-white">
+                        0
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+
+        <!-- ================= HERO SECTION ================= -->
+        <section id="hero" class="relative overflow-hidden pt-8 pb-16 lg:py-20 bg-gradient-to-b from-brand-100/60 via-brand-50 to-brand-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Hero Text -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 border border-amber-300 text-brand-700 text-xs font-extrabold">
+                            <span class="w-2 h-2 rounded-full bg-spicy-600 animate-ping"></span>
+                            <span>Freshly Made & Torched Daily</span>
+                        </div>
+
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-charcoal-900 tracking-tight leading-tight">
+                            Sensasi Jajanan Sultan: <br class="hidden sm:block">
+                            <span class="bg-gradient-to-r from-spicy-600 via-brand-600 to-amber-500 bg-clip-text text-transparent">
+                                Risol Mayo, Tahu Kocek, Es Teler & Dimsum Mentai!
+                            </span>
+                        </h1>
+
+                        <p class="text-stone-600 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed">
+                            Rasakan kombinasi sempurna gurihnya <b>Risol Mayo Lumer</b>, pedas nampol <b>Tahu Kocek Rawit</b>, creamy-nya <b>Dimsum Mentai Flame-Torched</b>, dan segarnya <b>Es Teler Sultan Durian</b>. 100% Halal & Bahan Premium!
+                        </p>
+
+                        <!-- CTA Group -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                            <a href="#katalog" class="w-full sm:w-auto text-center bg-gradient-to-r from-spicy-600 to-spicy-700 hover:from-spicy-700 hover:to-spicy-600 text-white font-extrabold px-8 py-4 rounded-2xl shadow-xl shadow-spicy-600/30 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm uppercase tracking-wider">
+                                <i class="fa-solid fa-utensils"></i>
+                                Pesan Menu Sekarang
+                            </a>
+                            <a href="#katalog" onclick="filterCategory('combo')" class="w-full sm:w-auto text-center bg-white hover:bg-amber-100/60 text-charcoal-900 font-extrabold border-2 border-stone-200 px-8 py-4 rounded-2xl shadow-sm transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm uppercase tracking-wider">
+                                <i class="fa-solid fa-gift text-brand-600"></i>
+                                Paket Hemat Combo
+                            </a>
+                        </div>
+
+                        <!-- Highlights Bar -->
+                        <div class="pt-6 border-t border-amber-200/60 grid grid-cols-4 gap-2 text-center max-w-lg mx-auto lg:mx-0">
+                            <div class="flex flex-col items-center gap-1">
+                                <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-base font-bold">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </div>
+                                <span class="text-[11px] font-bold text-stone-700">100% Halal</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1">
+                                <div class="w-9 h-9 rounded-xl bg-amber-100 text-brand-700 flex items-center justify-center text-base font-bold">
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="text-[11px] font-bold text-stone-700">High Grade</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1">
+                                <div class="w-9 h-9 rounded-xl bg-spicy-100 text-spicy-600 flex items-center justify-center text-base font-bold">
+                                    <i class="fa-solid fa-pepper-hot"></i>
+                                </div>
+                                <span class="text-[11px] font-bold text-stone-700">Cabai Asli</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1">
+                                <div class="w-9 h-9 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center text-base font-bold">
+                                    <i class="fa-solid fa-bolt"></i>
+                                </div>
+                                <span class="text-[11px] font-bold text-stone-700">Kirim Cepat</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Visual Grid Banner -->
+                    <div class="lg:col-span-5 relative flex justify-center">
+                        <div class="relative w-full max-w-md aspect-square rounded-3xl bg-gradient-to-tr from-brand-500 via-spicy-500 to-amber-400 p-3 shadow-2xl animate-pulse-gentle">
+                            <div class="w-full h-full rounded-2xl bg-charcoal-900 overflow-hidden relative group">
+                                <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80" 
+                                     alt="Kuliner Sultan Combo" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-85"
+                                     onerror="this.onerror=null; this.src='https://placehold.co/600x600/1C1917/F59E0B?text=Kuliner+Sultan+Menu';">
+                                
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-6 text-white">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <div class="flex text-amber-400 text-xs">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <span class="text-xs font-black text-amber-300">4.9 / 5.0 (3,800+ Ulasan)</span>
+                                    </div>
+                                    <h3 class="font-black text-xl text-white">Dimsum Mentai & Risol Mayo Sultan</h3>
+                                    <p class="text-xs text-stone-300 mt-1">Best Seller jajanan paling dicari Jabodetabek!</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badge -->
+                        <div class="absolute -bottom-4 -left-2 sm:left-2 bg-white p-3.5 rounded-2xl shadow-xl border border-stone-200 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-spicy-600 text-white flex items-center justify-center font-black text-lg">
+                                🔥
+                            </div>
+                            <div>
+                                <p class="text-xs font-extrabold text-charcoal-900">Pedas Level 1-5 Custom</p>
+                                <p class="text-[10px] font-semibold text-stone-500">Pilih sendiri tingkat pedasmu!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PRODUCT CATALOG SECTION ================= -->
+        <section id="katalog" class="py-16 bg-white border-y border-amber-200/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Section Title Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                    <div>
+                        <span class="text-spicy-600 text-xs font-black uppercase tracking-widest block mb-1">Menu Pilihan Sultan</span>
+                        <h2 class="text-3xl sm:text-4xl font-black text-charcoal-900">Katalog Sajian Favorit</h2>
+                    </div>
+                    <p class="text-stone-500 text-sm max-w-sm font-medium">Klik pada produk untuk memilih opsi level pedas, es/kemanisan, atau opsi frozen siap simpan.</p>
+                </div>
+
+                <!-- Category Navigation Tabs -->
+                <div class="flex items-center gap-2 overflow-x-auto pb-4 hide-scrollbar mb-8">
+                    <button onclick="filterCategory('all')" id="tab-all" class="category-btn active px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold whitespace-nowrap transition-all bg-charcoal-900 text-white shadow-md">
+                        <i class="fa-solid fa-border-all mr-1.5"></i> Semua Menu
+                    </button>
+                    <button onclick="filterCategory('risol')" id="tab-risol" class="category-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold whitespace-nowrap transition-all bg-stone-100 hover:bg-amber-100 text-stone-700">
+                        <i class="fa-solid fa-cookie-bite text-amber-600 mr-1.5"></i> Risol Mayo
+                    </button>
+                    <button onclick="filterCategory('tahu')" id="tab-tahu" class="category-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold whitespace-nowrap transition-all bg-stone-100 hover:bg-amber-100 text-stone-700">
+                        <i class="fa-solid fa-pepper-hot text-spicy-600 mr-1.5"></i> Tahu Kocek
+                    </button>
+                    <button onclick="filterCategory('esteler')" id="tab-esteler" class="category-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold whitespace-nowrap transition-all bg-stone-100 hover:bg-amber-100 text-stone-700">
+                        <i class="fa-solid fa-ice-cream text-sky-500 mr-1.5"></i> Es Teler Sultan
+                    </button>
+                    <button onclick="filterCategory('dimsum')" id="tab-dimsum" class="category-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold whitespace-nowrap transition-all bg-stone-100 hover:bg-amber-100 text-stone-700">
+                        <i class="fa-solid fa-fire text-orange-500 mr-1.5"></i> Dimsum Mentai
+                    </button>
+                    <button onclick="filterCategory('frozen')" id="tab-frozen" class="category-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold whitespace-nowrap transition-all bg-stone-100 hover:bg-amber-100 text-stone-700">
+                        <i class="fa-solid fa-snowflake text-indigo-500 mr-1.5"></i> Frozen & Ready
+                    </button>
+                    <button onclick="filterCategory('combo')" id="tab-combo" class="category-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold whitespace-nowrap transition-all bg-stone-100 hover:bg-amber-100 text-stone-700">
+                        <i class="fa-solid fa-box-open text-purple-600 mr-1.5"></i> Paket Combo
+                    </button>
+                </div>
+
+                <!-- Products Dynamic Grid -->
+                <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dynamic Product Cards injected via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TESTIMONIALS SECTION ================= -->
+        <section id="testimoni" class="py-16 bg-brand-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-spicy-600 text-xs font-black uppercase tracking-widest block mb-1">Testimoni Pelanggan</span>
+                    <h2 class="text-3xl font-black text-charcoal-900">Apa Kata Foodies Sultan?</h2>
+                    <p class="text-stone-600 text-sm mt-2">Ribuan porsi terjual setiap minggu dengan rating kepuasan 4.9/5 stars.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Review 1 -->
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-amber-200/60 flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 text-sm mb-3">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-stone-700 text-xs sm:text-sm italic mb-6 leading-relaxed">
+                                "Tahu Kocek level 4 nya beneran nampol cabai rawit aslinya! Ditambah Es Teler Sultan Durian buat penetral pedas, perfect bgt buat ngemil sore."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-spicy-100 text-spicy-600 flex items-center justify-center font-black text-sm">
+                                AR
+                            </div>
+                            <div>
+                                <h4 class="font-extrabold text-xs text-charcoal-900">Andini Rahma</h4>
+                                <span class="text-[10px] text-stone-400 font-semibold">Verified Buyer • Jakarta Selatan</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-amber-200/60 flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 text-sm mb-3">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-stone-700 text-xs sm:text-sm italic mb-6 leading-relaxed">"Dimsum mentainya dibakar aromanya smokey bgt, topping mozzarella nya melar. Risol Mayo Smoked beefnya mayo racikannya rich gak bikin enek!"</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-amber-100 text-brand-700 flex items-center justify-center font-black text-sm">
+                                RF
+                            </div>
+                            <div>
+                                <h4 class="font-extrabold text-xs text-charcoal-900">Reza Febrian</h4>
+                                <span class="text-[10px] text-stone-400 font-semibold">Verified Buyer • Depok</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-amber-200/60 flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 text-sm mb-3">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-stone-700 text-xs sm:text-sm italic mb-6 leading-relaxed">"Suka banget sama fitur varian Frozen Pack nya. Risol mayo sama dimsum mentai tinggal dihangatkan pas sarapan. Pengiriman instannya juga cepat!"</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center font-black text-sm">
+                                CP
+                            </div>
+                            <div>
+                                <h4 class="font-extrabold text-xs text-charcoal-900">Citra Putri</h4>
+                                <span class="text-[10px] text-stone-400 font-semibold">Verified Buyer • Tangerang</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= FAQ SECTION ================= -->
+        <section id="faq" class="py-16 bg-white border-t border-amber-200/60">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-spicy-600 text-xs font-black uppercase tracking-widest block mb-1">Paling Sering Ditanyakan</span>
+                    <h2 class="text-3xl font-black text-charcoal-900">FAQ & Panduan Penyajian</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- FAQ 1 -->
+                    <div class="border border-stone-200 rounded-2xl overflow-hidden">
+                        <button onclick="toggleFaq(this)" class="w-full text-left p-5 bg-stone-50 font-extrabold text-xs sm:text-sm text-charcoal-900 flex justify-between items-center hover:bg-amber-50/50 transition-colors">
+                            <span>Bagaimana cara menghangatkan Risol Mayo Frozen & Dimsum Mentai?</span>
+                            <i class="fa-solid fa-chevron-down text-stone-400 transition-transform"></i>
+                        </button>
+                        <div class="p-5 text-xs sm:text-sm text-stone-600 border-t border-stone-100 hidden leading-relaxed">
+                            • <b>Risol Mayo Frozen:</b> Thawing (diamkan di suhu ruang 15 menit), lalu goreng dalam minyak panas sedang selama 3-4 menit sampai garing keemasan.<br>
+                            • <b>Dimsum Mentai:</b> Kukus selama 5-7 menit atau microwave selama 2 menit hingga keju & saus mentai hangat lumer kembali.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="border border-stone-200 rounded-2xl overflow-hidden">
+                        <button onclick="toggleFaq(this)" class="w-full text-left p-5 bg-stone-50 font-extrabold text-xs sm:text-sm text-charcoal-900 flex justify-between items-center hover:bg-amber-50/50 transition-colors">
+                            <span>Apakah Es Teler Sultan aman dikirim via kurir Instant/Sameday?</span>
+                            <i class="fa-solid fa-chevron-down text-stone-400 transition-transform"></i>
+                        </button>
+                        <div class="p-5 text-xs sm:text-sm text-stone-600 border-t border-stone-100 hidden leading-relaxed">
+                            Ya, sangat aman! Anda dapat memilih opsi <b>"Pisah Es"</b> pada modal produk agar es batu dibungkus terpisah. Krimer dan topping alpukat, durian, nangka tetap segar sampai di lokasi Anda.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="border border-stone-200 rounded-2xl overflow-hidden">
+                        <button onclick="toggleFaq(this)" class="w-full text-left p-5 bg-stone-50 font-bold text-xs sm:text-sm text-charcoal-900 flex justify-between items-center hover:bg-amber-50/50 transition-colors">
+                            <span>Berapa lama daya tahan simpan produk?</span>
+                            <i class="fa-solid fa-chevron-down text-stone-400 transition-transform"></i>
+                        </button>
+                        <div class="p-5 text-xs sm:text-sm text-stone-600 border-t border-stone-100 hidden leading-relaxed">
+                            • <b>Varian Ready to Eat:</b> Sebaiknya dikonsumsi dalam kurun waktu 6-8 jam setelah diterima.<br>
+                            • <b>Varian Frozen:</b> Tahan hingga 1 bulan di freezer (-18°C) dan 3 hari di refrigerator (kulkas bawah).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-charcoal-900 text-stone-300 py-12 border-t border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-xl bg-spicy-600 flex items-center justify-center text-white text-sm">
+                            <i class="fa-solid fa-fire-burner"></i>
+                        </div>
+                        <span class="font-black text-xl text-white">Kuliner<span class="text-spicy-600">Sultan</span></span>
+                    </div>
+                    <p class="text-xs text-stone-400 leading-relaxed">
+                        Pusat jajanan kuliner kekinian kualitas premium: Risol Mayo, Tahu Kocek, Es Teler, dan Dimsum Mentai khas Indonesia.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-extrabold text-xs uppercase tracking-widest text-white mb-3">Kategori Kuliner</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#katalog" onclick="filterCategory('risol')" class="hover:text-amber-400 transition-colors">Risol Mayo Lumer</a></li>
+                        <li><a href="#katalog" onclick="filterCategory('tahu')" class="hover:text-amber-400 transition-colors">Tahu Kocek Rawit</a></li>
+                        <li><a href="#katalog" onclick="filterCategory('esteler')" class="hover:text-amber-400 transition-colors">Es Teler Durian Sultan</a></li>
+                        <li><a href="#katalog" onclick="filterCategory('dimsum')" class="hover:text-amber-400 transition-colors">Dimsum Mentai Torched</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-extrabold text-xs uppercase tracking-widest text-white mb-3">Jam Operasional</h4>
+                    <p class="text-xs text-stone-400">Senin - Minggu: 09.00 - 21.00 WIB</p>
+                    <p class="text-xs text-stone-400 mt-1">Pengiriman Instan: Setiap Hari</p>
+                </div>
+
+                <div>
+                    <h4 class="font-extrabold text-xs uppercase tracking-widest text-white mb-3">Sosial Media</h4>
+                    <div class="flex items-center gap-3">
+                        <a href="#" class="w-9 h-9 rounded-xl bg-stone-800 hover:bg-spicy-600 text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-xl bg-stone-800 hover:bg-spicy-600 text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                        <a href="https://wa.me/6281234567890" target="_blank" class="w-9 h-9 rounded-xl bg-stone-800 hover:bg-emerald-600 text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-stone-800 pt-6 text-center text-xs text-stone-500 font-semibold">
+                &copy; 2026 Kuliner Sultan F&B E-Commerce Platform. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= DYNAMIC PRODUCT DETAIL MODAL ================= -->
+    <div id="product-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm hidden transition-all">
+        <div class="bg-white w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl transform transition-all flex flex-col max-h-[90vh]">
+            
+            <!-- Modal Header Image -->
+            <div class="relative h-60 bg-stone-900 flex-shrink-0">
+                <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
+                <button onclick="closeProductModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/60 text-white hover:bg-black flex items-center justify-center transition-colors shadow-md">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="absolute bottom-3 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-amber-300 text-xs font-black uppercase tracking-wider" id="modal-category">
+                </div>
+            </div>
+
+            <!-- Modal Content Body -->
+            <div class="p-6 overflow-y-auto flex-grow space-y-5">
+                <div class="flex justify-between items-start gap-2">
+                    <div>
+                        <h3 id="modal-title" class="text-xl font-black text-charcoal-900"></h3>
+                        <div class="flex items-center gap-2 mt-1">
+                            <div class="flex text-amber-400 text-xs">
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <span id="modal-rating" class="text-xs font-extrabold text-stone-700"></span>
+                        </div>
+                    </div>
+                    <span id="modal-price" class="text-xl font-black text-spicy-600 whitespace-nowrap"></span>
+                </div>
+
+                <p id="modal-desc" class="text-stone-600 text-xs sm:text-sm leading-relaxed font-medium"></p>
+
+                <!-- Customization Option 1: Level Pedas (For Tahu Kocek, Dimsum, Spicy Risol) -->
+                <div id="option-spicy-container" class="space-y-2 hidden">
+                    <label class="block text-xs font-extrabold uppercase tracking-wider text-charcoal-900">
+                        🔥 Pilih Level Pedas Cabai Rawit:
+                    </label>
+                    <div class="grid grid-cols-5 gap-1.5">
+                        <label class="cursor-pointer border border-stone-200 rounded-xl p-2 text-center text-xs font-extrabold has-[:checked]:bg-spicy-600 has-[:checked]:text-white has-[:checked]:border-spicy-600 transition-all">
+                            <input type="radio" name="modal-spicy-level" value="Lvl 1 (Sedang)" class="hidden">
+                            <span>Lvl 1</span>
+                        </label>
+                        <label class="cursor-pointer border border-stone-200 rounded-xl p-2 text-center text-xs font-extrabold has-[:checked]:bg-spicy-600 has-[:checked]:text-white has-[:checked]:border-spicy-600 transition-all">
+                            <input type="radio" name="modal-spicy-level" value="Lvl 2 (Pedas)" checked class="hidden">
+                            <span>Lvl 2</span>
+                        </label>
+                        <label class="cursor-pointer border border-stone-200 rounded-xl p-2 text-center text-xs font-extrabold has-[:checked]:bg-spicy-600 has-[:checked]:text-white has-[:checked]:border-spicy-600 transition-all">
+                            <input type="radio" name="modal-spicy-level" value="Lvl 3 (Extra)" class="hidden">
+                            <span>Lvl 3</span>
+                        </label>
+                        <label class="cursor-pointer border border-stone-200 rounded-xl p-2 text-center text-xs font-extrabold has-[:checked]:bg-spicy-600 has-[:checked]:text-white has-[:checked]:border-spicy-600 transition-all">
+                            <input type="radio" name="modal-spicy-level" value="Lvl 4 (Nampol)" class="hidden">
+                            <span>Lvl 4</span>
+                        </label>
+                        <label class="cursor-pointer border border-stone-200 rounded-xl p-2 text-center text-xs font-extrabold has-[:checked]:bg-spicy-600 has-[:checked]:text-white has-[:checked]:border-spicy-600 transition-all">
+                            <input type="radio" name="modal-spicy-level" value="Lvl 5 (Sultan)" class="hidden">
+                            <span>Lvl 5 🔥</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Customization Option 2: Ice & Sweetness (For Es Teler) -->
+                <div id="option-esteler-container" class="space-y-3 hidden">
+                    <div>
+                        <label class="block text-xs font-extrabold uppercase tracking-wider text-charcoal-900 mb-1.5">
+                            🧊 Opsi Penyajian Es:
+                        </label>
+                        <div class="grid grid-cols-3 gap-2">
+                            <label class="cursor-pointer border border-stone-200 rounded-xl p-2 text-center text-xs font-extrabold has-[:checked]:bg-sky-500 has-[:checked]:text-white has-[:checked]:border-sky-500 transition-all">
+                                <input type="radio" name="modal-ice-opt" value="Es Normal" checked class="hidden">
+                                <span>Es Normal</span>
+                            </label>
+                            <label class="cursor-pointer border border-stone-200 rounded-xl p-2 text-center text-xs font-extrabold has-[:checked]:bg-sky-500 has-[:checked]:text-white has-[:checked]:border-sky-500 transition-all">
+                                <input type="radio" name="modal-ice-opt" value="Pisah Es" class="hidden">
+                                <span>Pisah Es 📦</span>
+                            </label>
+                            <label class="cursor-pointer border border-stone-200 rounded-xl p-2 text-center text-xs font-extrabold has-[:checked]:bg-sky-500 has-[:checked]:text-white has-[:checked]:border-sky-500 transition-all">
+                                <input type="radio" name="modal-ice-opt" value="Sedikit Es" class="hidden">
+                                <span>Less Ice</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customization Option 3: Ready to Eat vs Frozen Pack -->
+                <div id="option-serving-container" class="space-y-2 hidden">
+                    <label class="block text-xs font-extrabold uppercase tracking-wider text-charcoal-900">
+                        📦 Pilih Tipe Penyajian:
+                    </label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="cursor-pointer border border-stone-200 rounded-xl p-2.5 text-center text-xs font-extrabold has-[:checked]:bg-amber-100 has-[:checked]:border-brand-600 transition-all">
+                            <input type="radio" name="modal-serving-type" value="Siap Makan (Ready)" checked class="hidden">
+                            <span>🔥 Siap Makan (Hangat)</span>
+                        </label>
+                        <label class="cursor-pointer border border-stone-200 rounded-xl p-2.5 text-center text-xs font-extrabold has-[:checked]:bg-indigo-100 has-[:checked]:border-indigo-600 transition-all">
+                            <input type="radio" name="modal-serving-type" value="Frozen Pack" class="hidden">
+                            <span>❄️ Frozen Pack (Beku)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Ingredients & Serving Tips -->
+                <div class="bg-stone-50 border border-stone-200 p-3.5 rounded-2xl">
+                    <h4 class="text-xs font-extrabold text-stone-700 uppercase tracking-wider mb-1">
+                        <i class="fa-solid fa-circle-info text-brand-600 mr-1"></i> Komposisi & Catatan:
+                    </h4>
+                    <p id="modal-ingredients" class="text-xs text-stone-600 leading-relaxed"></p>
+                </div>
+            </div>
+
+            <!-- Modal Footer Counter & Add Action -->
+            <div class="p-4 border-t border-stone-200 bg-stone-50 flex items-center justify-between gap-4 flex-shrink-0">
+                <div class="flex items-center bg-white border border-stone-200 rounded-2xl p-1">
+                    <button onclick="adjustModalQty(-1)" class="w-9 h-9 rounded-xl bg-stone-100 text-stone-700 font-extrabold hover:bg-stone-200">-</button>
+                    <span id="modal-qty" class="w-10 text-center font-black text-sm">1</span>
+                    <button onclick="adjustModalQty(1)" class="w-9 h-9 rounded-xl bg-stone-100 text-stone-700 font-extrabold hover:bg-stone-200">+</button>
+                </div>
+
+                <button onclick="addModalItemToCart()" class="flex-grow bg-gradient-to-r from-spicy-600 to-spicy-700 hover:from-spicy-700 hover:to-spicy-600 text-white font-extrabold py-3.5 px-6 rounded-2xl shadow-lg shadow-spicy-600/30 text-xs sm:text-sm uppercase tracking-wider transition-transform active:scale-95 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-cart-plus"></i>
+                    <span>Tambah ke Keranjang</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= SHOPPING CART DRAWER ================= -->
+    <div id="cart-drawer-overlay" onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+    
+    <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full max-w-md bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+        
+        <!-- Drawer Header -->
+        <div class="p-5 border-b border-stone-200 flex items-center justify-between bg-charcoal-900 text-white">
+            <div class="flex items-center gap-2.5">
+                <i class="fa-solid fa-basket-shopping text-amber-400 text-lg"></i>
+                <h3 class="font-black text-base uppercase tracking-wider">Keranjang Pesanan</h3>
+            </div>
+            <button onclick="toggleCartDrawer(false)" class="w-8 h-8 rounded-full bg-stone-800 text-stone-400 hover:text-white flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Drawer Body Content -->
+        <div class="flex-grow overflow-y-auto p-5 space-y-6">
+            
+            <!-- Items Container -->
+            <div>
+                <h4 class="text-xs font-black uppercase tracking-wider text-stone-400 mb-3">Item Dipesan</h4>
+                <div id="cart-items-container" class="space-y-3">
+                    <!-- Dynamic cart items JS -->
+                </div>
+            </div>
+
+            <!-- Delivery & Customer Details -->
+            <div class="border-t border-stone-200 pt-5 space-y-4">
+                <h4 class="text-xs font-black uppercase tracking-wider text-stone-400">Pengiriman & Form Pemesan</h4>
+                
+                <!-- Delivery vs Pickup Toggle -->
+                <div class="grid grid-cols-2 gap-2 bg-stone-100 p-1 rounded-2xl">
+                    <button onclick="setDeliveryMethod('delivery')" id="btn-method-delivery" class="py-2.5 text-xs font-extrabold rounded-xl transition-all bg-white text-charcoal-900 shadow-sm">
+                        <i class="fa-solid fa-motorcycle text-spicy-600 mr-1"></i> Delivery Kurir
+                    </button>
+                    <button onclick="setDeliveryMethod('pickup')" id="btn-method-pickup" class="py-2.5 text-xs font-extrabold rounded-xl transition-all text-stone-600">
+                        <i class="fa-solid fa-store text-brand-600 mr-1"></i> Ambil Sendiri
+                    </button>
+                </div>
+
+                <!-- Delivery Zone Option -->
+                <div id="delivery-zone-container" class="space-y-1">
+                    <label class="block text-xs font-bold text-stone-700">Area Pengiriman Delivery:</label>
+                    <select id="delivery-zone" onchange="updateCartUI()" class="w-full px-3 py-2.5 rounded-xl border border-stone-200 text-xs font-bold focus:outline-none focus:border-spicy-600">
+                        <option value="10000">Dalam Kota (Rp 10.000)</option>
+                        <option value="20000">Luar Kota / Express Sameday (Rp 20.000)</option>
+                    </select>
+                </div>
+
+                <!-- Customer Form Inputs -->
+                <div class="space-y-3 text-xs">
+                    <div>
+                        <label class="block text-stone-700 font-bold mb-1">Nama Lengkap *</label>
+                        <input type="text" id="cust-name" placeholder="Contoh: Budi Santoso" class="w-full px-3 py-2.5 rounded-xl border border-stone-200 font-medium focus:outline-none focus:border-spicy-600">
+                    </div>
+                    <div>
+                        <label class="block text-stone-700 font-bold mb-1">Nomor WhatsApp *</label>
+                        <input type="tel" id="cust-phone" placeholder="Contoh: 081234567890" class="w-full px-3 py-2.5 rounded-xl border border-stone-200 font-medium focus:outline-none focus:border-spicy-600">
+                    </div>
+                    <div id="address-field-container">
+                        <label class="block text-stone-700 font-bold mb-1">Alamat Lengkap Pengiriman *</label>
+                        <textarea id="cust-address" rows="2" placeholder="Nama Jalan, No. Rumah, Kecamatan, Patokan..." class="w-full px-3 py-2.5 rounded-xl border border-stone-200 font-medium focus:outline-none focus:border-spicy-600"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-stone-700 font-bold mb-1">Waktu Jam Pengiriman / Pickup</label>
+                        <input type="text" id="cust-time" placeholder="Contoh: Hari ini jam 15:00 WIB" class="w-full px-3 py-2.5 rounded-xl border border-stone-200 font-medium focus:outline-none focus:border-spicy-600">
+                    </div>
+                    <div>
+                        <label class="block text-stone-700 font-bold mb-1">Catatan Khusus Tambahan</label>
+                        <input type="text" id="cust-notes" placeholder="Misal: Tahu kocek ekstra gurih / Es teler pisah es" class="w-full px-3 py-2.5 rounded-xl border border-stone-200 font-medium focus:outline-none focus:border-spicy-600">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Drawer Footer Calculations -->
+        <div class="p-5 border-t border-stone-200 bg-stone-50 space-y-3">
+            <div class="space-y-1.5 text-xs text-stone-600 font-medium">
+                <div class="flex justify-between">
+                    <span>Subtotal Produk</span>
+                    <span id="summary-subtotal" class="font-bold text-stone-800">Rp 0</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Estimasi Biaya Kirim</span>
+                    <span id="summary-shipping" class="font-bold text-stone-800">Rp 10.000</span>
+                </div>
+                <div class="flex justify-between text-base font-black text-charcoal-900 pt-2 border-t border-stone-200">
+                    <span>Total Pembayaran</span>
+                    <span id="summary-total" class="text-spicy-600">Rp 0</span>
+                </div>
+            </div>
+
+            <!-- WhatsApp Direct Button -->
+            <button onclick="processWhatsAppCheckout()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 rounded-2xl shadow-lg shadow-emerald-600/30 text-xs sm:text-sm uppercase tracking-wider transition-transform active:scale-95 flex items-center justify-center gap-2">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>Kirim Pesanan via WhatsApp</span>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- ================= TOAST NOTIFICATION ================= -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 bg-charcoal-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 transform translate-y-24 opacity-0 transition-all duration-300">
+        <div class="w-7 h-7 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs font-bold">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <span id="toast-msg" class="text-xs font-extrabold">Pesanan berhasil ditambahkan!</span>
+    </div>
+
+    <!-- ================= APPLICATION JAVASCRIPT ================= -->
+    <script>
+        // Full Dynamic Products Dataset
+        const PRODUCTS = [
+            {
+                id: 'p1',
+                name: 'Risol Mayo Smoked Beef & Cheese',
+                category: 'risol',
+                price: 18000,
+                rating: 4.9,
+                reviews: 1420,
+                isBestSeller: true,
+                badge: 'Favorite #1',
+                description: 'Risol mayo klasik dengan lembaran smoked beef tebal, telur rebus, keju melt, dan mayo racikan rahasia lumer di mulut.',
+                ingredients: 'Smoked beef premium, Telur rebus, Keju cheddar melt, Mayo racikan sultan, Kulit renyah panir.',
+                image: 'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=600&q=80',
+                hasSpicyOpt: false,
+                hasIceOpt: false,
+                hasFrozenOpt: true
+            },
+            {
+                id: 'p2',
+                name: 'Risol Mayo Spicy Bolognese',
+                category: 'risol',
+                price: 20000,
+                rating: 4.8,
+                reviews: 890,
+                isBestSeller: false,
+                badge: 'Pedas Lumer',
+                description: 'Risol isi daging sapi cincang saus bolognese pedas manis dengan lelehan mozzarella & mayonnaise creamy.',
+                ingredients: 'Daging sapi cincang bolognese, Cabai rawit segar, Keju Mozzarella, Creamy mayo.',
+                image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80',
+                hasSpicyOpt: true,
+                hasIceOpt: false,
+                hasFrozenOpt: true
+            },
+            {
+                id: 'p3',
+                name: 'Tahu Kocek Pedas Rawit (Level 1-5)',
+                category: 'tahu',
+                price: 15000,
+                rating: 4.9,
+                reviews: 2300,
+                isBestSeller: true,
+                badge: 'Pedas Nampol',
+                description: 'Tahu krispi goreng dadakan diuled bersama racikan cabai rawit merah segar, bawang gurih, dan bumbu rempah khas.',
+                ingredients: 'Tahu krispi super renyah, Cabai rawit merah petik segar, Bawang putih krispi, Bumbu gurih sultan.',
+                image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80',
+                hasSpicyOpt: true,
+                hasIceOpt: false,
+                hasFrozenOpt: false
+            },
+            {
+                id: 'p4',
+                name: 'Tahu Kocek Bawang Garam Krispi',
+                category: 'tahu',
+                price: 14000,
+                rating: 4.7,
+                reviews: 540,
+                isBestSeller: false,
+                badge: 'Gurih Renyah',
+                description: 'Tahu kocek dengan topping garlic crisp, cincangan daun bawang segar, dan taburan garam merica wangi.',
+                ingredients: 'Tahu kotak garing, Crispy garlic flakes, Daun bawang, Garam gurih spesial.',
+                image: 'https://images.unsplash.com/photo-1585109649139-366815a0d713?auto=format&fit=crop&w=600&q=80',
+                hasSpicyOpt: false,
+                hasIceOpt: false,
+                hasFrozenOpt: false
+            },
+            {
+                id: 'p5',
+                name: 'Es Teler Sultan Durian',
+                category: 'esteler',
+                price: 25000,
+                rating: 5.0,
+                reviews: 3100,
+                isBestSeller: true,
+                badge: 'Sultan Favorite',
+                description: 'Alpukat mentega, potongan nangka manis, kelapa muda serut, cincau hitam, disiram topping DURIAN ASLI Medan & krimer gurih.',
+                ingredients: 'Daging Durian Medan Asli, Alpukat mentega, Kelapa muda, Nangka wangi, Creamer kental manis, Es serut.',
+                image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80',
+                hasSpicyOpt: false,
+                hasIceOpt: true,
+                hasFrozenOpt: false
+            },
+            {
+                id: 'p6',
+                name: 'Es Teler Original Creamy',
+                category: 'esteler',
+                price: 18000,
+                rating: 4.8,
+                reviews: 1120,
+                isBestSeller: false,
+                badge: 'Segar Creamy',
+                description: 'Segarnya racikan kelapa muda segar, alpukat, dan nangka dengan krimer spesial & es serut halus penyegar dahaga.',
+                ingredients: 'Alpukat mentega, Kelapa muda serut, Nangka, Cincau, Santan krimer manis.',
+                image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=600&q=80',
+                hasSpicyOpt: false,
+                hasIceOpt: true,
+                hasFrozenOpt: false
+            },
+            {
+                id: 'p7',
+                name: 'Dimsum Mentai Flame Torched',
+                category: 'dimsum',
+                price: 28000,
+                rating: 4.9,
+                reviews: 1850,
+                isBestSeller: true,
+                badge: 'Smokey Mentai',
+                description: 'Dimsum olahan ayam & udang juicy disiram saus mentai melimpah lalu dibakar (flame-torched) aroma smokey menggoda.',
+                ingredients: 'Daging ayam & udang segar (isi 4 pcs), Saus Mentai Tobiko, Nori flakes, Flame-torched glaze.',
+                image: 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=600&q=80',
+                hasSpicyOpt: true,
+                hasIceOpt: false,
+                hasFrozenOpt: true
+            },
+            {
+                id: 'p8',
+                name: 'Dimsum Mentai Mozzarella Lava',
+                category: 'dimsum',
+                price: 32000,
+                rating: 4.9,
+                reviews: 940,
+                isBestSeller: false,
+                badge: 'Extra Mozza',
+                description: 'Dimsum mentai dengan ekstra topping keju mozzarella tebal melar yang dipanggang melumer sempurna.',
+                ingredients: 'Dimsum Ayam Udang 4 pcs, Saus Mentai, Keju Mozzarella melar, Taburan Wijen & Nori.',
+                image: 'https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=600&q=80',
+                hasSpicyOpt: true,
+                hasIceOpt: false,
+                hasFrozenOpt: true
+            },
+            {
+                id: 'p9',
+                name: 'Paket Combo Nyam (Risol + Tahu + Es Teler)',
+                category: 'combo',
+                price: 52000,
+                rating: 5.0,
+                reviews: 1560,
+                isBestSeller: true,
+                badge: 'Super Hemat',
+                description: 'Paket komplit kenyang! Isi 1 Risol Mayo Smoked Beef + 1 Tahu Kocek Pedas + 1 Es Teler Sultan Durian.',
+                ingredients: '1x Risol Mayo Smoked Beef, 1x Tahu Kocek Level Pilihan, 1x Es Teler Sultan Durian.',
+                image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80',
+                hasSpicyOpt: true,
+                hasIceOpt: true,
+                hasFrozenOpt: false
+            }
+        ];
+
+        // Global State Variables
+        let cart = [];
+        let currentFilter = 'all';
+        let activeProduct = null;
+        let modalQty = 1;
+        let deliveryMethod = 'delivery'; // 'delivery' or 'pickup'
+        const ADMIN_WA_NUMBER = '6281234567890'; // Target WhatsApp Admin
+
+        // Init on DOM Content Loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            updateCartUI();
+        });
+
+        // Filter Catalog
+        function filterCategory(category) {
+            currentFilter = category;
+
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('bg-charcoal-900', 'text-white', 'shadow-md');
+                btn.classList.add('bg-stone-100', 'text-stone-700');
+            });
+
+            const activeBtn = document.getElementById(`tab-${category}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-stone-100', 'text-stone-700');
+                activeBtn.classList.add('bg-charcoal-900', 'text-white', 'shadow-md');
+            }
+
+            renderProducts();
+        }
+
+        // Render Catalog Grid Cards
+        function renderProducts() {
+            const container = document.getElementById('product-grid');
+            
+            let filtered = PRODUCTS;
+            if (currentFilter === 'frozen') {
+                filtered = PRODUCTS.filter(p => p.hasFrozenOpt);
+            } else if (currentFilter !== 'all') {
+                filtered = PRODUCTS.filter(p => p.category === currentFilter);
+            }
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12 text-stone-400">
+                        <i class="fa-solid fa-cookie-bite text-4xl mb-2"></i>
+                        <p class="font-bold text-sm">Tidak ada produk di kategori ini.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(p => `
+                <div class="bg-white rounded-3xl overflow-hidden border border-amber-200/60 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <!-- Image Container -->
+                        <div class="relative h-48 bg-stone-100 overflow-hidden cursor-pointer" onclick="openProductModal('${p.id}')">
+                            <img src="${p.image}" 
+                                 alt="${p.name}" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x400/1C1917/F59E0B?text=${encodeURIComponent(p.name)}';">
+                            
+                            ${p.isBestSeller ? `
+                                <span class="absolute top-3 left-3 bg-spicy-600 text-white font-black text-[10px] px-3 py-1 rounded-full shadow-md uppercase tracking-wider">
+                                    🔥 Best Seller
+                                </span>
+                            ` : ''}
+
+                            <span class="absolute top-3 right-3 bg-black/60 backdrop-blur-md text-amber-300 font-bold text-[10px] px-2.5 py-1 rounded-full">
+                                ${p.badge}
+                            </span>
+                        </div>
+
+                        <!-- Info Area -->
+                        <div class="p-5">
+                            <div class="flex items-center gap-1 text-amber-400 text-xs mb-1">
+                                <i class="fa-solid fa-star"></i>
+                                <span class="font-black text-stone-800 ml-1">${p.rating}</span>
+                                <span class="text-stone-400 text-[10px]">(${p.reviews} review)</span>
+                            </div>
+
+                            <h3 onclick="openProductModal('${p.id}')" class="font-black text-base text-charcoal-900 cursor-pointer hover:text-spicy-600 transition-colors line-clamp-1">
+                                ${p.name}
+                            </h3>
+
+                            <p class="text-stone-500 text-xs mt-1.5 line-clamp-2 leading-relaxed font-medium">
+                                ${p.description}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Pricing & Action -->
+                    <div class="px-5 pb-5 pt-2 flex items-center justify-between border-t border-stone-100">
+                        <div>
+                            <span class="text-[10px] text-stone-400 font-bold uppercase block">Harga</span>
+                            <span class="font-black text-base text-charcoal-900">Rp ${p.price.toLocaleString('id-ID')}</span>
+                        </div>
+                        <button onclick="openProductModal('${p.id}')" class="bg-amber-100 hover:bg-spicy-600 text-brand-700 hover:text-white px-4 py-2.5 rounded-2xl transition-all active:scale-95 font-extrabold text-xs flex items-center gap-1.5">
+                            <i class="fa-solid fa-sliders"></i>
+                            <span>Pilih Option</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Modal Open Logic with Contextual Options
+        function openProductModal(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+
+            activeProduct = product;
+            modalQty = 1;
+
+            document.getElementById('modal-img').src = product.image;
+            document.getElementById('modal-title').innerText = product.name;
+            document.getElementById('modal-price').innerText = `Rp ${product.price.toLocaleString('id-ID')}`;
+            document.getElementById('modal-rating').innerText = `${product.rating} / 5.0 (${product.reviews} ulasan)`;
+            document.getElementById('modal-desc').innerText = product.description;
+            document.getElementById('modal-ingredients').innerText = product.ingredients;
+            document.getElementById('modal-category').innerText = product.badge;
+            document.getElementById('modal-qty').innerText = modalQty;
+
+            // Toggle Options Visibility Contextually
+            const spicyContainer = document.getElementById('option-spicy-container');
+            const estelerContainer = document.getElementById('option-esteler-container');
+            const servingContainer = document.getElementById('option-serving-container');
+
+            if (product.hasSpicyOpt) {
+                spicyContainer.classList.remove('hidden');
+            } else {
+                spicyContainer.classList.add('hidden');
+            }
+
+            if (product.hasIceOpt) {
+                estelerContainer.classList.remove('hidden');
+            } else {
+                estelerContainer.classList.add('hidden');
+            }
+
+            if (product.hasFrozenOpt) {
+                servingContainer.classList.remove('hidden');
+            } else {
+                servingContainer.classList.add('hidden');
+            }
+
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+            activeProduct = null;
+        }
+
+        function adjustModalQty(delta) {
+            modalQty = Math.max(1, modalQty + delta);
+            document.getElementById('modal-qty').innerText = modalQty;
+        }
+
+        // Add Modal Item to Shopping Cart
+        function addModalItemToCart() {
+            if (!activeProduct) return;
+
+            let customOptions = [];
+
+            if (activeProduct.hasSpicyOpt) {
+                const spicyVal = document.querySelector('input[name="modal-spicy-level"]:checked').value;
+                customOptions.push(spicyVal);
+            }
+
+            if (activeProduct.hasIceOpt) {
+                const iceVal = document.querySelector('input[name="modal-ice-opt"]:checked').value;
+                customOptions.push(iceVal);
+            }
+
+            if (activeProduct.hasFrozenOpt) {
+                const servingVal = document.querySelector('input[name="modal-serving-type"]:checked').value;
+                customOptions.push(servingVal);
+            }
+
+            const optionString = customOptions.length > 0 ? customOptions.join(', ') : 'Standard';
+
+            addToCart(activeProduct, modalQty, optionString);
+            closeProductModal();
+        }
+
+        // Add Item to Cart Array
+        function addToCart(product, quantity = 1, optionsText = 'Standard') {
+            const existingIndex = cart.findIndex(item => item.id === product.id && item.optionsText === optionsText);
+
+            if (existingIndex > -1) {
+                cart[existingIndex].quantity += quantity;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    quantity: quantity,
+                    optionsText: optionsText,
+                    image: product.image
+                });
+            }
+
+            updateCartUI();
+            showToast(`"${product.name}" dimasukkan ke keranjang!`);
+        }
+
+        function updateCartQty(index, delta) {
+            cart[index].quantity += delta;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function setDeliveryMethod(method) {
+            deliveryMethod = method;
+            const btnDelivery = document.getElementById('btn-method-delivery');
+            const btnPickup = document.getElementById('btn-method-pickup');
+            const addrContainer = document.getElementById('address-field-container');
+            const zoneContainer = document.getElementById('delivery-zone-container');
+
+            if (method === 'delivery') {
+                btnDelivery.className = 'py-2.5 text-xs font-extrabold rounded-xl transition-all bg-white text-charcoal-900 shadow-sm';
+                btnPickup.className = 'py-2.5 text-xs font-extrabold rounded-xl transition-all text-stone-600';
+                addrContainer.classList.remove('hidden');
+                zoneContainer.classList.remove('hidden');
+            } else {
+                btnPickup.className = 'py-2.5 text-xs font-extrabold rounded-xl transition-all bg-white text-charcoal-900 shadow-sm';
+                btnDelivery.className = 'py-2.5 text-xs font-extrabold rounded-xl transition-all text-stone-600';
+                addrContainer.classList.add('hidden');
+                zoneContainer.classList.add('hidden');
+            }
+
+            updateCartUI();
+        }
+
+        // Update Cart Drawer UI & Calculations
+        function updateCartUI() {
+            const totalItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count-badge').innerText = totalItemsCount;
+
+            const container = document.getElementById('cart-items-container');
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 text-stone-400">
+                        <i class="fa-solid fa-basket-shopping text-4xl mb-2"></i>
+                        <p class="text-xs font-extrabold">Keranjang pesanan masih kosong.</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = cart.map((item, idx) => `
+                    <div class="flex items-center gap-3 p-3 bg-stone-50 rounded-2xl border border-stone-200">
+                        <img src="${item.image}" alt="${item.name}" class="w-14 h-14 rounded-xl object-cover bg-stone-200 flex-shrink-0">
+                        <div class="flex-grow min-w-0">
+                            <h4 class="font-extrabold text-xs text-charcoal-900 truncate">${item.name}</h4>
+                            <span class="text-[10px] text-spicy-700 bg-spicy-100 px-2 py-0.5 rounded-md font-bold inline-block my-0.5">
+                                ${item.optionsText}
+                            </span>
+                            <div class="text-xs font-black text-spicy-600">Rp ${item.price.toLocaleString('id-ID')}</div>
+                        </div>
+                        <div class="flex items-center bg-white border border-stone-200 rounded-xl">
+                            <button onclick="updateCartQty(${idx}, -1)" class="w-6 h-6 text-xs font-bold text-stone-600">-</button>
+                            <span class="w-6 text-center text-xs font-black">${item.quantity}</span>
+                            <button onclick="updateCartQty(${idx}, 1)" class="w-6 h-6 text-xs font-bold text-stone-600">+</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Price Calculations
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const deliveryZoneSelect = document.getElementById('delivery-zone');
+            const selectedShippingFee = deliveryMethod === 'delivery' ? parseInt(deliveryZoneSelect.value || 10000) : 0;
+            const total = subtotal + selectedShippingFee;
+
+            document.getElementById('summary-subtotal').innerText = `Rp ${subtotal.toLocaleString('id-ID')}`;
+            document.getElementById('summary-shipping').innerText = deliveryMethod === 'delivery' 
+                ? `Rp ${selectedShippingFee.toLocaleString('id-ID')}` 
+                : 'Rp 0 (Pickup)';
+            document.getElementById('summary-total').innerText = `Rp ${total.toLocaleString('id-ID')}`;
+        }
+
+        function toggleCartDrawer(open) {
+            const drawer = document.getElementById('cart-drawer');
+            const overlay = document.getElementById('cart-drawer-overlay');
+
+            if (open) {
+                overlay.classList.remove('hidden');
+                drawer.classList.remove('translate-x-full');
+            } else {
+                drawer.classList.add('translate-x-full');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+            }
+        }
+
+        // WhatsApp Checkout Direct Generator
+        function processWhatsAppCheckout() {
+            if (cart.length === 0) {
+                showToast('Keranjang Anda masih kosong!');
+                return;
+            }
+
+            const name = document.getElementById('cust-name').value.trim();
+            const phone = document.getElementById('cust-phone').value.trim();
+            const address = document.getElementById('cust-address').value.trim();
+            const timeSlot = document.getElementById('cust-time').value.trim();
+            const notes = document.getElementById('cust-notes').value.trim();
+
+            if (!name || !phone) {
+                showToast('Mohon isi Nama & No. WhatsApp');
+                return;
+            }
+
+            if (deliveryMethod === 'delivery' && !address) {
+                showToast('Mohon isi alamat lengkap pengiriman');
+                return;
+            }
+
+            let itemsListStr = cart.map(item => 
+                `• ${item.quantity}x ${item.name} (${item.optionsText}) = Rp ${(item.price * item.quantity).toLocaleString('id-ID')}`
+            ).join('\n');
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const deliveryZoneSelect = document.getElementById('delivery-zone');
+            const shippingCost = deliveryMethod === 'delivery' ? parseInt(deliveryZoneSelect.value || 10000) : 0;
+            const total = subtotal + shippingCost;
+
+            const message = 
+`Halo Admin Kuliner Sultan! 👑
+Saya mau pesan menu makanan & minuman berikut:
+
+📝 *DETAIL PESANAN SULTAN:*
+--------------------------------
+${itemsListStr}
+
+📦 *INFORMASI PENGIRIMAN:*
+• Metode: ${deliveryMethod === 'delivery' ? 'Delivery Kurir' : 'Ambil Sendiri (Self Pickup)'}
+• Nama Pemesan: ${name}
+• No. WhatsApp: ${phone}
+${deliveryMethod === 'delivery' ? `• Alamat Lengkap: ${address}\n` : ''}${timeSlot ? `• Waktu Kirim/Pickup: ${timeSlot}\n` : ''}${notes ? `• Catatan Khusus: ${notes}\n` : ''}
+💰 *RINCIAN PEMBAYARAN:*
+• Subtotal Menu: Rp ${subtotal.toLocaleString('id-ID')}
+• Biaya Kirim: Rp ${shippingCost.toLocaleString('id-ID')}
+• *TOTAL BAYAR: Rp ${total.toLocaleString('id-ID')}*
+
+Mohon konfirmasi pesanan & rincian rekening/QRIS untuk pembayaran. Terima kasih!`;
+
+            const encodedURL = `https://wa.me/${ADMIN_WA_NUMBER}?text=${encodeURIComponent(message)}`;
+            window.open(encodedURL, '_blank');
+        }
+
+        // Toast Helper
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
+        }
+
+        // FAQ Toggle Accordion
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+    </script>
+</body>
+</html>
